@@ -44,6 +44,7 @@ class Database():
             with open(os.path.join(self.people_path, p.uid + '.pkl'), 'wb') as f:
                 pickle.dump(p, f)
 
+            return p.uid
         else:
             raise ValueError('Person already exists in DB!')
 
