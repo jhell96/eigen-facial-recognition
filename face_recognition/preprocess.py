@@ -5,8 +5,8 @@ Josh Hellerstein
 
 
 import cv2
-import os
 import numpy as np
+import os
 
 curr_path = os.path.dirname(__file__)
 model_path = os.path.join(curr_path, "../data/models/lbpcascade_frontalface.xml")
@@ -21,12 +21,8 @@ def detect_face(img):
     (x, y, w, h) = faces[0]
     return img[y:y+w, x:x+h], faces[0]
 
-def read_img(file):
-    im = cv2.imread(file, 0)
-    im = cv2.equalizeHist(im)
-    return im
-
-def show_img(img):
-    cv2.imshow('image', img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+def preprocess(img, img_size_out=(300,300)):
+    img = detect_face(img)[0]
+    img = cv2.resize(img, dsize=img_size_out, interpolation=cv2.INTER_CUBIC)
+    img = cv2.equalizeHist(img)
+    return img
