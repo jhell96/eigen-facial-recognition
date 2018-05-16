@@ -10,7 +10,7 @@ import os
 
 from face_recognition.preprocess import *
 from face_recognition.recognition import *
-from face_recognition.database import *
+from face_recognition.database2 import *
 
 
 def read_img(file):

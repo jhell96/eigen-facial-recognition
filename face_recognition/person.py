@@ -34,7 +34,7 @@ class Person():
         Returns:
             TYPE: object's interal dict
         """
-        self.faces = [(f.tostring(), f.shape) for f in self.faces]
+        self.restore = [(f.tostring(), f.shape) for f in self.faces]
         state = self.__dict__.copy()
         return state
 
@@ -45,5 +45,5 @@ class Person():
             newstate (dict): Object's previous state, as its internal dict
         """
         self.__dict__.update(newstate)
-        faces = newstate['faces']
-        self.faces = [np.fromstring(f[0], dtype=np.uint8).reshape(f[1]) for f in faces]
+        restore = newstate['restore']
+        self.faces = [np.fromstring(f[0], dtype=np.uint8).reshape(f[1]) for f in restore]
