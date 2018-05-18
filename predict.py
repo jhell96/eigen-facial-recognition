@@ -35,10 +35,16 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Classify \
         a facial image against the database")
 
-    parser.add_argument("-i", "--img", help="The path to the image to recognize", required=True)
-    args = parser.parse_args()
+    parser.add_argument("-i", "--img", help="The path to the image to recognize", required=False)
+    parser.add_argument("-e", "--evaluate", help="A flag to evaluate the accuracy of the algorithm", required=False, default=None, action='store_true')
 
-    if os.path.exists(args.img):
+    args = parser.parse_args()
+    if args.evaluate:
+        d = Database()
+        e = Eigenfaces(d)
+        res = e.evaluate()
+        print(res)
+    elif os.path.exists(args.img):
         res = predict_face(args.img)
         print(res)
         

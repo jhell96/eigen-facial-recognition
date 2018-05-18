@@ -10,6 +10,7 @@ import cv2
 class Database():
     curr_path = os.path.dirname(__file__)
     people_path = os.path.join(curr_path, "../data/people")
+    test_path = os.path.join(curr_path, "../data/test")
     uid_to_name = {}
 
     def __init__(self):
@@ -92,4 +93,12 @@ class Database():
                 im = cv2.imread(filename, 0)
                 faces.append((im, name, uid))
 
+        return faces
+
+    def get_test_faces(self):
+        faces = []
+        for file in os.listdir(self.test_path):
+            im = os.path.join(self.test_path, file)
+            img = cv2.imread(im, 0)
+            faces.append((img, os.path.splitext(file)[0]))
         return faces
