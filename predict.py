@@ -40,10 +40,18 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     if args.evaluate:
-        d = Database()
-        e = Eigenfaces(d)
-        res = e.evaluate()
-        print(res)
+        energies = [0.85]
+        metrics = ['l2_norm']
+        tops = [5]
+
+        for energy in energies:
+            for metric in metrics:
+                for top in tops:
+                    d = Database()
+                    e = Eigenfaces(d, energy=energy)
+                    res = e.evaluate(metric=metric, top=top)
+                    print(energy, metric, top, res)
+
     elif os.path.exists(args.img):
         res = predict_face(args.img)
         print(res)

@@ -31,3 +31,10 @@ def preprocess(img, img_size_out=(100,100)):
 
     img = cv2.equalizeHist(img)
     return img
+
+def map_to_image_range(old_img):
+    old_range = (np.max(old_img) - np.min(old_img))
+    new_range = (255.0-0.0)
+    new_image = (((old_img - np.min(old_img)) * new_range) / old_range)
+
+    return np.array(new_image, dtype=np.uint8)

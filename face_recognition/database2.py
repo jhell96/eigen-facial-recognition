@@ -83,7 +83,7 @@ class Database():
 
     def get_all_faces(self):
         faces = []
-        for uid in self.uid_to_name:
+        for uid in sorted(self.uid_to_name):
             name = self.uid_to_name[uid]
             entry = name + "-" + uid
             path_to_entry = os.path.join(self.people_path, entry)
@@ -97,7 +97,7 @@ class Database():
 
     def get_test_faces(self):
         faces = []
-        for file in os.listdir(self.test_path):
+        for file in sorted(os.listdir(self.test_path)):
             im = os.path.join(self.test_path, file)
             img = cv2.imread(im, 0)
             faces.append((img, os.path.splitext(file)[0]))
