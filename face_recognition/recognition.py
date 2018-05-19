@@ -84,7 +84,7 @@ class Eigenfaces():
         print("found weights")
 
         self.rf = self.train_rf()
-        self.inspect()
+        # self.inspect()
 
     def predict(self, img, metric='l2_norm', top=5):
         im = np.array(img, dtype='float64').flatten()
@@ -143,9 +143,9 @@ class Eigenfaces():
 
         y_train = np.array([uid_to_class[x] for x in ordered_uids])
 
-        # regr = RandomForestClassifier(max_depth=None, random_state=0)
+        regr = RandomForestClassifier(max_depth=None, random_state=0)
 
-        regr = SVC(probability=True, kernel='linear', gamma=0.0001, C=1000.0)
+        # regr = SVC(probability=True, kernel='linear', gamma=0.0001, C=1000.0)
         
         regr = regr.fit(x_train, y_train)
 
