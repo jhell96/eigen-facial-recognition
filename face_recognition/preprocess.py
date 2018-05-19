@@ -25,19 +25,15 @@ def detect_face(img, pad=0):
     return img[y-y_pad:y+w+y_pad, x-x_pad:x+h+x_pad], faces[0]
 
 def preprocess(img, img_size_out=(100,100)):
-    cv2.imwrite('face1.jpg', img)
 
     img_face = detect_face(img)[0]
 
-    cv2.imwrite('face2.jpg', img_face)
 
     img = cv2.resize(img_face, dsize=img_size_out, interpolation=cv2.INTER_AREA)
 
-    cv2.imwrite('face3.jpg', img)
 
     img = cv2.equalizeHist(img)
 
-    cv2.imwrite('face4.jpg', img)
     return img
 
 def map_to_image_range(old_img):
